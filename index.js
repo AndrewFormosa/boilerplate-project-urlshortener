@@ -53,7 +53,24 @@ app.use('/api/shorturl', bodyParser.urlencoded({ extended: false }));
 app.get('/api/shorturl/:url', function (req, res) {
 
   shortURL = req.params['url'];
-  res.json({ url: shortURL });
+
+  UrlRecord.find({short_url:shortURL}).then(
+    resp=>{
+      var directURL=resp[0].original_url;
+      console.log(directURL);
+
+      res.status(301).redirect(directURL);
+    },
+    erro=>{
+      console.log(erro);
+    }
+
+  );
+
+//  res.json({ url: shortURL });
+
+
+
 });
 
 
