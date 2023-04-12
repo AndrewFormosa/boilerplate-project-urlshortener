@@ -78,8 +78,7 @@ app.route('/api/shorturl').post(function (req, res) {
 
       //check to see if the url is currently within the database
     
-      const urlRegex = /^https?\:\/\/([a-zA-Z0-9]+\.)?[a-zA-Z0-9]+\.[a-zA-Z0-9]+\/?[\w\/\-\.\_\~\!\$\&\'\(\)\*\+\,\;\=\:\@\%]+?$/
-      
+
       UrlRecord.find({original_url:fullURL}).then(
         resp => {
           if(resp==""){
